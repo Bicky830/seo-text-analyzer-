@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Live Character & SEO Analyzer Tool</title>
+  <style>
+<head>
+  <title>Live Character Counter & SEO Keyword Analyzer Tool</title>
+  <meta name="description" content="Free online tool to count characters, words, paragraphs, and keyword density for writers and SEO experts.">
+  <meta name="keywords" content="character counter, word counter, SEO keyword tool, content analyzer, online writing tools">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+    body { font-family: Arial; padding: 20px; background: #f9f9f9; }
+    textarea { width: 100%; height: 150px; font-size: 16px; }
+    input { width: 100%; padding: 8px; margin-top: 10px; }
+    .box { background: #fff; padding: 15px; margin-top: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <h2>Live Character Counter + SEO Keyword Analyzer</h2>
+
+  <textarea id="text" placeholder="Type or paste your content..."></textarea>
+  <input type="text" id="keyword" placeholder="Enter focus keyword (optional)" />
+
+  <div class="box">
+    <p><strong>Characters:</strong> <span id="chars">0</span></p>
+    <p><strong>Words:</strong> <span id="words">0</span></p>
+    <p><strong>Paragraphs:</strong> <span id="paras">0</span></p>
+    <p><strong>Keyword Count:</strong> <span id="kwcount">0</span></p>
+  </div>
+
+  <script>
+    const text = document.getElementById("text");
+    const keyword = document.getElementById("keyword");
+    const chars = document.getElementById("chars");
+    const words = document.getElementById("words");
+    const paras = document.getElementById("paras");
+    const kwcount = document.getElementById("kwcount");
+
+    function updateStats() {
+      let content = text.value;
+      chars.textContent = content.length;
+      words.textContent = content.trim().split(/\s+/).filter(w => w).length;
+      paras.textContent = content.split(/\n+/).filter(p => p.trim()).length;
+
+      let kw = keyword.value.trim().toLowerCase();
+      let count = 0;
+      if (kw) {
+        let regex = new RegExp(`\\b${kw}\\b`, "gi");
+        count = (content.match(regex) || []).length;
+      }
+      kwcount.textContent = count;
+    }
+
+    text.addEventListener("input", updateStats);
+    keyword.addEventListener("input", updateStats);
+  </script>
+</body>
+</html>
